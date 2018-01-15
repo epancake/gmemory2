@@ -5,7 +5,7 @@ module.exports = {
     return database("coffees").select();
   },
   read(id) {
-    return database('coffees_id_seq').where("id", id).first()
+    return database('coffees').select().where("id", id).first()
   },
   create(coffee) {
     return database('coffees')
@@ -13,7 +13,7 @@ module.exports = {
       .returning("*")
       .then(record => record[0])
   },
-  update(id, resolution) {
+  update(id, coffee) {
     return database('coffees').update(coffee)
       .where("id", id).returning("*").then(record => record[0])
   },
